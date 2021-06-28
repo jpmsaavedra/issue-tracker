@@ -1,11 +1,11 @@
 #!/bin/sh
 
-#branch="$(git rev-parse --abbrev-ref HEAD)"
+branch="$(git rev-parse --abbrev-ref HEAD)"
 
-#if [ "$branch" = "master" ]; then
-  #echo "You can't commit directly to master branch"
-  #exit 1
-#fi
+if [ "$branch" = "master" ]; then
+  echo "You can't commit directly to master branch"
+  exit 1
+fi
 
 
 npm run test
@@ -14,6 +14,7 @@ if [ $? -ne 0 ]; then
   echo "This commit has been aborted because the tests failed."
   exit 1
 fi
+
 
 npm run linter
 
