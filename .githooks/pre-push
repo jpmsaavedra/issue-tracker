@@ -11,14 +11,14 @@ fi
 npm run test
 
 if [ $? -ne 0 ]; then
-  echo "This commit has been aborted because the tests failed."
+  echo "This push has been aborted because the tests failed."
   exit 1
 fi
 
 npm run linter
 
 if [ $? -ne 0 ]; then
-  echo "This commit has been aborted because the linter failed."
+  echo "This push has been aborted because the linter failed."
   exit 1
 fi
 
