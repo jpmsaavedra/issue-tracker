@@ -24,18 +24,18 @@ class Issues {
 	}
 
 	/**
-	 * registers a new user
-	 * @param {String} user the chosen username
-	 * @param {String} pass the chosen password
-	 * @param {String} email the chosen email
-	 * @returns {Boolean} returns true if the new user has been added
+	 * submits a new user
+	 * @param {String} name the chosen issue name
+	 * @param {String} location_desc the chosen issue location description
+	 * @param {String} detailed_desc the chosen issue detailed description
+	 * @param {String} photo the path of the issue picture
+	 * @param {String} user the id of the user who submitted the issue
 	 */
 	async submit(name, location_desc, detailed_desc, photo, user) {        
         let sql = `SELECT id AS id FROM users WHERE user="${user}";`
         const record = await this.db.get(sql)
         const reporter = record.id
-        let status = 'new';
-        photo = "test";
+        const status = 'new';
         sql = `INSERT INTO issues(name, location_desc, detailed_desc, status, photo, reporter) VALUES("${name}", "${location_desc}", "${detailed_desc}", "${status}", "${photo}", "${reporter}")`
 		await this.db.run(sql)
 		return true
