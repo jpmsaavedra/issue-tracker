@@ -1,0 +1,45 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Submit an Issue</title>
+		<meta name="description" content="form to submit new issue">
+		<meta name="author" content="Joao Saavedra">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+    </head>
+	<body>
+		<header>
+		<h1>Submit New Issue</h1>
+		<a href="/login">Log in</a>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+		<form action="/secure/submit" enctype='multipart/form-data' method="post">
+			<p>
+				<label for="name">Issue name</label><br />
+				<input type="text" name="name" placeholder="what is the issue?" value="{{body.name}}">
+			</p>
+			<p>
+				<label for="location_desc">Description of the location</label><br />
+				<input type="text" name="location_desc" placeholder="describe the location" value="{{body.location_desc}}">
+			</p>
+			<p>
+				<label for="detailed_desc">Detailed description</label><br />
+				<input type="textarea" id="editor" name="detailed_desc" placeholder="describe the issue" value="{{body.detailed_desc}}">
+			</p>
+            <p>
+				<label for="photo">Photo Upload</label><br />
+				<input type="file" name="photo" accept="image/*" placeholder="describe the issue" value="{{body.photo}}">
+			</p>
+			<p><input type="submit" value="Submit"></p>
+		</form>
+		</main>
+	</body>
+</html>
