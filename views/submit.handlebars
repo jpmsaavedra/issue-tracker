@@ -13,7 +13,11 @@
 	<body>
 		<header>
 		<h1>Submit New Issue</h1>
-		<a href="/login">Log in</a>
+		{{#if authorised}}
+                <a href="/logout">Log out</a>
+			{{else}}
+				<a href="/login">Log in</a>
+			{{/if}}
 		</header>
 		{{#if msg}}
  			<aside>
@@ -28,15 +32,15 @@
 			</p>
 			<p>
 				<label for="location_desc">Description of the location</label><br />
-				<input type="text" name="location_desc" placeholder="describe the location" value="{{body.location_desc}}">
+				<input type="text" name="location_desc" placeholder="describe the location" value="{{body.locationDesc}}">
 			</p>
 			<p>
 				<label for="detailed_desc">Detailed description</label><br />
-				<input type="textarea" id="editor" name="detailed_desc" placeholder="describe the issue" value="{{body.detailed_desc}}">
+				<textarea name="detailed_desc" rows=5 cols=100 placeholder="describe the issue" value="{{body.detailedDesc}}"></textarea>
 			</p>
             <p>
 				<label for="photo">Photo Upload</label><br />
-				<input type="file" name="photo" accept="image/*" placeholder="describe the issue" value="{{body.photo}}">
+				<input type="file" name="photo" accept="image/*" value="{{body.photo}}">
 			</p>
 			<p><input type="submit" value="Submit"></p>
 		</form>
