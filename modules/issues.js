@@ -48,6 +48,19 @@ class Issues {
 		return true
 	}
 
+	/**
+	 * gets issues from database
+	 * @returns {Object} allIssues issues information from database
+	 */
+    async getIssues() {
+		let sql = 'SELECT count(id) AS count FROM issues;'
+		const records = await this.db.get(sql)
+		if(!records.count) throw new Error('no issues found')
+		sql = 'SELECT * FROM issues;'
+        const allIssues = await this.db.get(sql)
+		return allIssues
+	}
+
 	async close() {
 		await this.db.close()
 	}
