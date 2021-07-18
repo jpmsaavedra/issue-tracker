@@ -116,6 +116,14 @@ section > p {
 	margin-bottom: 0.5vw;
 }
 
+section > img {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 0.5vw;
+    height: 10vw;
+    width: 10vw;
+}
+
 section > h3 {
 	margin: 0;
 	padding: 0;
