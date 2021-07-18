@@ -18,7 +18,10 @@ router.use(checkAuth)
 
 
 router.get('/', async ctx => {
+	const issue = await new Issues(dbName)
 	try {
+		ctx.hbs.issues = await issue.getIssues()
+		console.log(ctx.hbs)
 		await ctx.render('index', ctx.hbs)
 	} catch(err) {
 		ctx.hbs.error = err.message
@@ -41,7 +44,8 @@ router.post('/submit', async ctx => {
 	try {
 		const body = ctx.request.body
 		const user = ctx.session.user
-		const path = ctx.request.files.photo.path
+		const pathSlicer = 29
+		const path = ctx.request.files.photo.path.substr(pathSlicer)
 		await issue.submit(body.name, body.locationDesc, body.detailedDesc, path, user)
 		const referrer = body.referrer || '/secure'
 		return ctx.redirect(`${referrer}?msg=issue has been created...`)
@@ -49,7 +53,6 @@ router.post('/submit', async ctx => {
 		console.log(err)
 		ctx.hbs.msg = err.message
 		ctx.hbs.body = ctx.request.body
-		console.log(ctx.hbs)
 		await ctx.render('submit', ctx.hbs)
 	} finally {
 		await issue.close()
