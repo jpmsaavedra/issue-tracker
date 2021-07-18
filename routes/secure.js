@@ -3,7 +3,6 @@ import Router from 'koa-router'
 
 const router = new Router({ prefix: '/secure' })
 
-import Accounts from '../modules/accounts.js'
 import Issues from '../modules/issues.js'
 const dbName = 'website.db'
 
@@ -28,7 +27,7 @@ router.get('/', async ctx => {
 })
 
 router.get('/submit', async ctx => {
-    try {
+	try {
 		await ctx.render('submit', ctx.hbs)
 	} catch(err) {
 		await ctx.render('error', ctx.hbs)
@@ -38,18 +37,20 @@ router.get('/submit', async ctx => {
 
 router.post('/submit', async ctx => {
 	const issue = await new Issues(dbName)
-    console.log(ctx.request.body)
-    ctx.hbs.body = ctx.request.body
+	ctx.hbs.body = ctx.request.body
 	try {
 		const body = ctx.request.body
-        const user = ctx.session.user
-		await issue.submit(body.name, body.location_desc, body.detailed_desc, body.photo, user)
+		const user = ctx.session.user
+		const path = ctx.request.files.photo.path
+		await issue.submit(body.name, body.locationDesc, body.detailedDesc, path, user)
 		const referrer = body.referrer || '/secure'
-        return ctx.redirect(`${referrer}?msg=issue has been created...`)
+		return ctx.redirect(`${referrer}?msg=issue has been created...`)
 	} catch(err) {
 		console.log(err)
 		ctx.hbs.msg = err.message
-		await ctx.render('error', ctx.hbs)
+		ctx.hbs.body = ctx.request.body
+		console.log(ctx.hbs)
+		await ctx.render('submit', ctx.hbs)
 	} finally {
 		await issue.close()
 	}

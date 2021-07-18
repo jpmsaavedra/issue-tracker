@@ -14,12 +14,12 @@ const dbName = 'website.db'
  * @route {GET} /
  */
 router.get('/', async ctx => {
-    try {
-    /**if(ctx.hbs.authorised !== true) return ctx.redirect('/login?msg=you need to log in')**/
-    if(ctx.hbs.authorised === true) return ctx.redirect('/secure')
-    else return ctx.redirect('/login?msg=you need to log in')
-    /**try {
-        await ctx.render('index', ctx.hbs)**/
+	try {
+		/**if(ctx.hbs.authorised !== true) return ctx.redirect('/login?msg=you need to log in')**/
+		if(ctx.hbs.authorised === true) return ctx.redirect('/secure')
+		else return ctx.redirect('/login?msg=you need to log in')
+		/**try {
+			await ctx.render('index', ctx.hbs)**/
 	} catch(err) {
 		await ctx.render('error', ctx.hbs)
 	}
@@ -69,8 +69,8 @@ router.post('/login', async ctx => {
 		const body = ctx.request.body
 		await account.login(body.user, body.pass)
 		ctx.session.authorised = true
-        ctx.session.user = body.user
-        console.log(ctx.session)
+		ctx.session.user = body.user
+		console.log(ctx.session)
 		const referrer = body.referrer || '/secure'
 		return ctx.redirect(`${referrer}?msg=you are now logged in...`)
 	} catch(err) {

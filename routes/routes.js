@@ -6,7 +6,14 @@ import publicRouter from './public.js'
 import secureRouter from'./secure.js'
 
 const mainRouter = new Router()
-mainRouter.use(bodyParser({multipart: true, formidable:{uploadDir: process.env.PWD + '/public/uploads'}, urlencoded: true, keepExtensions: true}))
+mainRouter.use(bodyParser({
+	multipart: true,
+	formidable: {
+		uploadDir: `${process.env.PWD}/public/uploads`,
+		urlencoded: true,
+		keepExtensions: true
+	}
+}))
 
 const nestedRoutes = [publicRouter, secureRouter]
 for (const router of nestedRoutes) {
