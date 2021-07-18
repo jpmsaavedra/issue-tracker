@@ -4,6 +4,8 @@ node_modules/
 coverage/
 screenshots/*
 docs/
+public/uploads/
+tmp/
 
 data/
 coverage/

@@ -24,11 +24,11 @@ if [ $? -ne 0 ]; then
 fi
 
 
-sudo dpl --provider=heroku --app=monteir4-sem3 --api-key=f6fa7d11-1d70-458e-8b60-55ea7d82e90e
-
-if [ $? -ne 0 ]; then
-  echo "This push has been aborted because the deployment failed."
-  exit 1
-fi
+#sudo dpl --provider=heroku --app=monteir4-sem3 --api-key=f6fa7d11-1d70-458e-8b60-55ea7d82e90e
+#
+#if [ $? -ne 0 ]; then
+#  echo "This push has been aborted because the deployment failed."
+#  exit 1
+#fi
 
 exit 0
