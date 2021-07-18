@@ -26,9 +26,9 @@
 			</aside>
 		{{/if}}
 	<main class="grid">
-	</main>
-    <footer>
-		<img src="https://resources.humandx.org/static/img/loading_spinner.gif" alt="loader" />
-	</footer>
+        {{#each issues}}
+        <section><img src="{{this.photo}}" alt="test" /><h2>{{this.name}}</h2><p>{{this.locationDesc}}</p><p>{{this.date}}</p></section>
+        {{/each}}
+    </main>
 	</body>
 </html>
