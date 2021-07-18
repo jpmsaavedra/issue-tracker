@@ -8,7 +8,7 @@ if [ "$branch" = "master" ]; then
 fi
 
 
-npm run test
+sudo npm run test
 
 if [ $? -ne 0 ]; then
   echo "This commit has been aborted because the tests failed."
@@ -16,7 +16,7 @@ if [ $? -ne 0 ]; then
 fi
 
 
-npm run linter
+sudo npm run linter
 
 if [ $? -ne 0 ]; then
   echo "This commit has been aborted because the linter failed."
