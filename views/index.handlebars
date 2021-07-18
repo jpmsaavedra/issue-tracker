@@ -25,11 +25,10 @@
 				<p class="msg">{{msg}}</p>
 			</aside>
 		{{/if}}
-	<main>
-		<p>This is the home page. Users can see it without logging in.</p>
-		{{#if authorised}}
-			<p><a href="/secure">secure page</a></p>
-		{{/if}}
-	</main>
+	<main class="grid">
+        {{#each issues}}
+        <section><img src="{{this.photo}}" alt="test" /><h2>{{this.name}}</h2><p>{{this.locationDesc}}</p><small>{{this.date}}</small></section>
+        {{/each}}
+    </main>
 	</body>
 </html>
