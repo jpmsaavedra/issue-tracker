@@ -108,12 +108,30 @@ section {
 	margin-top: 1vw;
 	padding: 1vw;
 	border-radius: 1vw;
+    margin: auto;
+    margin-bottom: 1vw;
 }
 
 section > p {
 	margin: 0;
 	padding: 0;
 	margin-bottom: 0.5vw;
+    text-align: center;
+}
+
+section > img {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 0.5vw;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1vw;
+}
+
+section > h2 {
+    text-align: center;
 }
 
 section > h3 {
