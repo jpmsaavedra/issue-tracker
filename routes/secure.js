@@ -14,6 +14,7 @@ async function checkAuth(ctx, next) {
 	await next()
 }
 
+
 router.use(checkAuth)
 
 
@@ -21,11 +22,10 @@ router.get('/', async ctx => {
 	const issue = await new Issues(dbName)
 	try {
 		ctx.hbs.issues = await issue.getIssues()
-		console.log(ctx.hbs)
 		await ctx.render('index', ctx.hbs)
 	} catch(err) {
-		ctx.hbs.error = err.message
-		await ctx.render('error', ctx.hbs)
+		ctx.hbs.msg = err.message
+		await ctx.render('submit', ctx.hbs)
 	}
 })
 
