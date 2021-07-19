@@ -1,6 +1,8 @@
 
 /* main.js */
 
+/* global showdown, document*/
+
 window.addEventListener('DOMContentLoaded', () => {
 	console.log('DOMContentLoaded')
 	if(document.querySelector('aside')) {
@@ -10,15 +12,13 @@ window.addEventListener('DOMContentLoaded', () => {
 			document.querySelector('aside').hidden = true
 		},delay)
 	}
-    let converter = new showdown.Converter({'tables': true, 'tasklists': true, 'strikethrough': true})
-    const options = converter.getOptions()
-    console.log(options)
-	document.querySelector('textarea').addEventListener('input', event => {
-        console.log('change')
-        const markdown = document.querySelector('textarea').value
-        console.log(markdown)
+})
+
+window.addEventListener('DOMContentLoaded', () => {
+	const converter = new showdown.Converter({'tables': true, 'tasklists': true, 'strikethrough': true})
+	document.querySelector('textarea').addEventListener('input', () => {
+		const markdown = document.querySelector('textarea').value
 		const html = converter.makeHtml(markdown)
-		console.log(html)
-		document.querySelector('article').innerHTML = html
+		document.querySelector('#markdown').innerHTML = html
 	})
 })
