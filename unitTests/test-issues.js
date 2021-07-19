@@ -89,3 +89,32 @@ test('GET ISSUES : error if no issues on database', async test => {
 	}
 })
 
+test('GET ISSUE  : no error getting issue', async test => {
+	test.plan(1)
+	const issue = await new Issues() // no database specified so runs in-memory
+	try {
+		await issue.submit('test name', 'test location', 'Lorem ipsum dolor sit amet, \
+			consectetuer adipiscing elit. Aenean commodo ligula eget dolor. \
+			Aenean mana', '/test/path', 'test')
+		const get = issue.getSingleIssue(1)
+		test.truthy(get, 'unable to get issues')
+	} catch(err) {
+		test.fail('error thrown')
+	} finally {
+		issue.close()
+	}
+})
+
+test('GET ISSUE  : error if no issues on database', async test => {
+	test.plan(1)
+	const issue = await new Issues()
+	try {
+		await issue.getSingleIssue()
+		test.fail('error not thrown')
+	} catch(err) {
+		test.is(err.message, 'no issues found!', 'incorrect error message')
+	} finally {
+		issue.close()
+	}
+})
+
