@@ -8,7 +8,8 @@
 		<meta name="description" content="form to submit new issue">
 		<meta name="author" content="Joao Saavedra">
 		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
-		<script type="module" src="{{host}}/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.4.0/showdown.min.js"></script>
+        <script type="module" src="{{host}}/main.js"></script>
     </head>
 	<body>
 		<header>
@@ -37,13 +38,19 @@
 			<p>
 				<label for="detailedDesc">Detailed description</label><br />
 				<textarea name="detailedDesc" rows=5 cols=100 placeholder="describe the issue" value="{{body.detailedDesc}}"></textarea>
-			</p>
+            </p>
             <p>
 				<label for="photo">Photo Upload</label><br />
 				<input type="file" name="photo" accept="image/*" value="{{body.photo}}">
 			</p>
 			<p><input type="submit" value="Submit"></p>
+            <!--<br />-->
 		</form>
+                        <p>
+                <label>Markdown Formatting</label>            
+            </p>			
+                <textarea id=markdown readonly></textarea><br />
+            <br />
 		</main>
 	</body>
 </html>
