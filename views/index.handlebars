@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-			<h1>Home</h1>
+			<h1>Coventry Issue Tracker</h1>
 			{{#if authorised}}
                 <a href="/logout">Log out</a>
                 <a href="/secure/submit">Add issue</a>
@@ -27,7 +27,12 @@
 		{{/if}}
 	<main class="grid">
         {{#each issues}}
-        <section><img src="{{this.photo}}" alt="test" /><a href="/secure/issue/{{this.id}}"><h2>{{this.name}}</h2></a><p>{{this.locationDesc}}</p><small>{{this.date}}</small></section>
+        <section>
+            <img src="{{host}}/{{this.photo}}" alt="test" /><br />
+            <a href="/secure/issue/{{this.id}}"><h2>{{this.name}}</h1></a><br />
+            <h3>{{this.locationDesc}}</h3><br />
+            <small>{{this.date}}</small>
+        </section>
         {{/each}}
     </main>
 	</body>
