@@ -85,6 +85,7 @@ article {
 	width: 50vw;
 	/* background-color: grey;
 	float: left; */
+    color: black;
 }
 
 aside {
@@ -239,6 +240,10 @@ form > br {
 
 form > p {
     color: black;
+}
+
+#markdown {
+    color: black
 }
 
 dl {
