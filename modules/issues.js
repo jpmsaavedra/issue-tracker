@@ -64,6 +64,20 @@ class Issues {
 		return allIssues
 	}
 
+	async getSingleIssue(id) {
+		let sql = 'SELECT count(id) AS count FROM issues;'
+		const records = await this.db.get(sql)
+		if(!records.count) throw new Error('no issues found!')
+		sql = `SELECT * FROM issues WHERE id = "${id}";`
+		const singleIssue = await this.db.get(sql)
+		const oldDate = singleIssue.date
+		const options = {year: 'numeric', month: 'numeric', day: 'numeric'}
+		const newDate = new Date(oldDate).toLocaleDateString('en-GB', options)
+		singleIssue.date = newDate
+		console.log(singleIssue)
+		return singleIssue
+	}
+
 	async close() {
 		await this.db.close()
 	}

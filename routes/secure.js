@@ -29,6 +29,17 @@ router.get('/', async ctx => {
 	}
 })
 
+router.get('/issue/:id', async ctx => {
+	const issue = await new Issues(dbName)
+	try {
+		const issueId = ctx.params.id
+		ctx.hbs.issue = await issue.getSingleIssue(issueId)
+		await ctx.render('issue', ctx.hbs)
+	} catch(err) {
+		await ctx.render('error', ctx.hbs)
+	}
+})
+
 router.get('/submit', async ctx => {
 	try {
 		await ctx.render('submit', ctx.hbs)
@@ -36,7 +47,6 @@ router.get('/submit', async ctx => {
 		await ctx.render('error', ctx.hbs)
 	}
 })
-
 
 router.post('/submit', async ctx => {
 	const issue = await new Issues(dbName)
