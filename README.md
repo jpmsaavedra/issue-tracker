@@ -1,12 +1,9 @@
 
-# Local Community - Software Engineering - 5001CEM
+# Local Community - Issue Tracking Web App
 
-Website to track issues in the city of Coventry
+Community driven web app used to keep track of issues within a city/area/neighbour.
 
-## Description
-
-Simple website that allows to create account, submit new issues and see them on the home page
-
+Create your issue with description, picture and location, until it gets reviewed and flagged as resolved by a moderator.
 
 ## Getting Started
 
@@ -37,5 +34,4 @@ Simple website that allows to create account, submit new issues and see them on 
 
 ## Author
 
-Joao Saavedra - 8965518
-monteir4@uni.coventry.ac.uk
+Joao Saavedra
